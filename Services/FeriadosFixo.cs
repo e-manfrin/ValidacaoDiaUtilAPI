@@ -6,7 +6,7 @@ namespace DataAPI.Services
 {
     public class FeriadosFixo
     {
-    public static DataCalendario ConsultarFeriadoFixo(int dia, int mes)
+        public static DataCalendario ConsultarFeriadoFixo(int dia, int mes)
         {
             List<DataCalendario> lista = new List<DataCalendario>();
 
@@ -23,7 +23,5 @@ namespace DataAPI.Services
             var retorno = lista.FirstOrDefault(feriado => feriado.Dia == dia && feriado.Mes == mes);
             return retorno;
         }
-
-
     }
 }

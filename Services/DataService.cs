@@ -127,22 +127,63 @@ namespace DataAPI.Services
         private DataResponse verificarDiaUtil(int dia, int mes, int ano)
         {
             DateTime data = new DateTime(ano, mes, dia);
-            DataCalendario dataCalendario = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
-            if (dataCalendario != null)
+            DataCalendario feriadoFixo = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
+            DataCalendario feriadoMovel = FeriadoMovel.ConsultarFeriadoMovel(dia, mes, ano);
+            if (feriadoFixo != null)
             {
-                DataResponse dataResponse = new DataResponse(data, false, true);
+                DataResponse dataResponse = new DataResponse(data, feriadoFixo.NomeFeriado ,false, true);
                 return dataResponse;
-            }            
+            }     
+            else if (feriadoMovel != null)
+            {
+                DataResponse dataResponse = new DataResponse(data, feriadoMovel.NomeFeriado ,false, true);
+                return dataResponse;
+            }
             else if (data.DayOfWeek == DayOfWeek.Saturday || data.DayOfWeek == DayOfWeek.Sunday)
             {
-                DataResponse dataResponse = new DataResponse(data, false, false);
+                string nomeDiaDaSemana = conversorDiasDaSemana(data);
+                DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana ,false, false);
                 return dataResponse;
             }            
             else
             {
-                DataResponse dataResponse = new DataResponse(data, true, false);
+                string nomeDiaDaSemana = conversorDiasDaSemana(data);
+                DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana,true, false);
+                
                 return dataResponse;
             }
+        }
+        private string conversorDiasDaSemana(DateTime data)
+        {
+            int codigo = (int) data.DayOfWeek;
+            if (codigo == 0)
+            {
+                return "Domingo";
+            }
+            else if (codigo == 1)
+            {
+                return "Segunda-feira";
+            }
+            else if (codigo == 2)
+            {
+                return "Terça-feira";
+            }
+            else if (codigo == 3)
+            {
+                return "Quarta-feira";
+            }
+            else if (codigo == 4)
+            {
+                return "Quinta-feira";
+            }
+            else if (codigo == 5)
+            {
+                return "Sexta-feira";
+            }
+            else 
+            {
+                return "Sábado";
+            } 
         }
     } 
 }
