@@ -7,7 +7,7 @@ namespace DataAPI.Services
 {
     public class DataService
     {
-        public DataResponse validarData(DataRequest dataDto)
+        public DataResponse ValidarData(DataRequest dataDto)
         {
             string data = dataDto.Data;
             int quantidadeCaracteres = data.Length;
@@ -20,18 +20,18 @@ namespace DataAPI.Services
                 string segundaBarra = data.Substring(5, 1);
                 string ano = data.Substring(6, 4);
 
-                bool verificarFormatoData = verificarDataFormatoCorreto(dia, primeiraBarra, mes
+                bool verificarFormatoData = VerificarDataFormatoCorreto(dia, primeiraBarra, mes
                , segundaBarra, ano, quantidadeCaracteres);
 
                 int diaInteiro = Int32.Parse(dia);
                 int mesInteiro = Int32.Parse(mes);
                 int anoInteiro = Int32.Parse(ano);
 
-                bool verificarDtValida = verificarDataValida(diaInteiro, mesInteiro, anoInteiro);
+                bool verificarDtValida = VerificarDataValida(diaInteiro, mesInteiro, anoInteiro);
 
                 if (verificarFormatoData == true && verificarDtValida == true)
                 {
-                    DataResponse dataResponse = verificarDiaUtil(diaInteiro, mesInteiro, anoInteiro);
+                    DataResponse dataResponse = VerificarDiaUtil(diaInteiro, mesInteiro, anoInteiro);
                     return dataResponse;
                 }
                 else
@@ -45,7 +45,7 @@ namespace DataAPI.Services
             }          
         }
 
-        private bool verificarDataFormatoCorreto(string dia
+        private bool VerificarDataFormatoCorreto(string dia
             ,string primeiraBarra, string mes, string segundaBarra, string ano
             , int quantidadeCaracteres)
         {
@@ -82,7 +82,7 @@ namespace DataAPI.Services
             return true;
         }
 
-        private bool verificarDataValida(int dia, int mes, int ano)
+        private bool VerificarDataValida(int dia, int mes, int ano)
         {
             if ((dia <= 0 && dia > 31) || (mes <= 0 && mes > 12) || (ano <= 0))
             {
@@ -124,7 +124,7 @@ namespace DataAPI.Services
             return true;
         }
 
-        private DataResponse verificarDiaUtil(int dia, int mes, int ano)
+        private DataResponse VerificarDiaUtil(int dia, int mes, int ano)
         {
             DateTime data = new DateTime(ano, mes, dia);
             DataCalendario feriadoFixo = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
@@ -141,19 +141,19 @@ namespace DataAPI.Services
             }
             else if (data.DayOfWeek == DayOfWeek.Saturday || data.DayOfWeek == DayOfWeek.Sunday)
             {
-                string nomeDiaDaSemana = conversorDiasDaSemana(data);
+                string nomeDiaDaSemana = ConversorDiasDaSemana(data);
                 DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana ,false, false);
                 return dataResponse;
             }            
             else
             {
-                string nomeDiaDaSemana = conversorDiasDaSemana(data);
+                string nomeDiaDaSemana = ConversorDiasDaSemana(data);
                 DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana,true, false);
                 
                 return dataResponse;
             }
         }
-        private string conversorDiasDaSemana(DateTime data)
+        private string ConversorDiasDaSemana(DateTime data)
         {
             int codigo = (int) data.DayOfWeek;
             if (codigo == 0)

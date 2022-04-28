@@ -10,6 +10,9 @@ namespace DataAPI.Services
         {
             List<DataCalendario> lista = new List<DataCalendario>();
 
+            //DataCalendario anoNovo = new DataCalendario(1, 1, true, false, "Ano novo");
+            //lista.Add(anoNovo);
+
             lista.Add(new DataCalendario(1, 1, true, false, "Ano novo"));
             lista.Add(new DataCalendario(21, 4, true, false, "Tiradentes"));
             lista.Add(new DataCalendario(1, 5, true, false, "Dia do Trabalho"));
@@ -20,8 +23,8 @@ namespace DataAPI.Services
             lista.Add(new DataCalendario(20, 11, true, false, "Consciência Negra"));
             lista.Add(new DataCalendario(25, 12, true, false, "Natal")); 
             
-            var retorno = lista.FirstOrDefault(feriado => feriado.Dia == dia && feriado.Mes == mes);
-            return retorno;
+            DataCalendario feriado = lista.FirstOrDefault(feriado => feriado.Dia == dia && feriado.Mes == mes);
+            return feriado;
         }
     }
 }

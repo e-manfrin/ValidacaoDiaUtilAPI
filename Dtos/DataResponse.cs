@@ -5,7 +5,6 @@ namespace DataAPI.Dtos
     public class DataResponse
     {
         public DateTime Data { get; set; }
-
         public string Dia { get; set; }
         public bool DiaUtil { get; set; }
         public bool Feriado { get; set; }

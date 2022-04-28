@@ -13,9 +13,9 @@ namespace DataAPI.Controllers
         private DataService dataService = new DataService();
 
         [HttpGet]
-        public IActionResult validacaoData([FromBody] DataRequest dataDto)
+        public IActionResult ValidacaoData([FromBody] DataRequest dataDto)
         {
-            DataResponse dataResponse = dataService.validarData(dataDto);   
+            DataResponse dataResponse = dataService.ValidarData(dataDto);   
             if(dataResponse == null)
             {
                 return NotFound();
