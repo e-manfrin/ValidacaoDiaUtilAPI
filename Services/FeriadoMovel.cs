@@ -30,6 +30,8 @@ namespace DataAPI.Services
             DateTime feriadoPascoa = new DateTime(ano, mesPascoa, diaPascoa);
             DateTime feriadoCarnaval = feriadoPascoa.AddDays(-47);
             DateTime feridadoCorpusChristi = feriadoPascoa.AddDays(60);
+            DateTime feriadoSextaFeiraSanta = feriadoPascoa.AddDays(-2);
+
             if (dia == feriadoPascoa.Day && mes == feriadoPascoa.Month && ano == feriadoPascoa.Year)
             {
                 DataCalendario dataCalendario = new DataCalendario(dia,mes,ano,true,false,"Páscoa");
@@ -43,6 +45,11 @@ namespace DataAPI.Services
             else if (dia == feridadoCorpusChristi.Day && mes == feridadoCorpusChristi.Month && ano == feridadoCorpusChristi.Year)
             {
                 DataCalendario dataCalendario = new DataCalendario(dia, mes, ano, true, false, "Corpus Christi");
+                return dataCalendario;
+            }
+            else if (dia == feriadoSextaFeiraSanta.Day && mes == feriadoSextaFeiraSanta.Month && ano == feriadoSextaFeiraSanta.Year)
+            {
+                DataCalendario dataCalendario = new DataCalendario(dia, mes, ano, true, false, "Sexta feira Santa");
                 return dataCalendario;
             }
             else
