@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LcZDRDYav5TJ0X2rxM0ggG66JDAnp5eCdvEzN4saRcaMUozIOutX3SYpiniAqTYjyzrXs/Oo4m2FTyzNlTYUqA==",
+  "dgSpecHash": "7JMXi4rGe2AB5aQRfdHxuk5vl0E8zL4UH2RxFu00SGUV2QEbEr/z2UAkZY9swHj5XK45OF2fcTfd1uK90BGbBQ==",
   "success": true,
-  "projectFilePath": "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
+  "projectFilePath": "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\drman\\.nuget\\packages\\common.logging\\3.4.1\\common.logging.3.4.1.nupkg.sha512",
     "C:\\Users\\drman\\.nuget\\packages\\common.logging.core\\3.4.1\\common.logging.core.3.4.1.nupkg.sha512",

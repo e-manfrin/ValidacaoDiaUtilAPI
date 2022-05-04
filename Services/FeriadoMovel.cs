@@ -5,7 +5,6 @@ namespace DataAPI.Services
 {
     public class FeriadoMovel
     {
-        //Para anos entre 2020 e 2099:
         public static DataCalendario ConsultarFeriadoMovel(int dia, int mes, int ano)
         {
             int diaPascoa;

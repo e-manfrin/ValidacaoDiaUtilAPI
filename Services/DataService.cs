@@ -9,124 +9,23 @@ namespace DataAPI.Services
     {
         public DataResponse ValidarData(DataRequest dataDto)
         {
-            string data = dataDto.Data;
-            int quantidadeCaracteres = data.Length;
-
             try
             {
-                string dia = data.Substring(0, 2);
-                string primeiraBarra = data.Substring(2, 1);
-                string mes = data.Substring(3, 2);
-                string segundaBarra = data.Substring(5, 1);
-                string ano = data.Substring(6, 4);
-
-                bool verificarFormatoData = VerificarDataFormatoCorreto(dia, primeiraBarra, mes
-               , segundaBarra, ano, quantidadeCaracteres);
-
-                int diaInteiro = Int32.Parse(dia);
-                int mesInteiro = Int32.Parse(mes);
-                int anoInteiro = Int32.Parse(ano);
-
-                bool verificarDtValida = VerificarDataValida(diaInteiro, mesInteiro, anoInteiro);
-
-                if (verificarFormatoData == true && verificarDtValida == true)
-                {
-                    DataResponse dataResponse = VerificarDiaUtil(diaInteiro, mesInteiro, anoInteiro);
-                    return dataResponse;
-                }
-                else
-                {
-                    return null;
-                }
+                DateTime data = dataDto.Data;
+                DataResponse dataResponse = VerificarDiaUtil(data);
+                return dataResponse;
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (Exception ex)
             {
                 return null;
             }          
         }
-
-        private bool VerificarDataFormatoCorreto(string dia
-            ,string primeiraBarra, string mes, string segundaBarra, string ano
-            , int quantidadeCaracteres)
+        private DataResponse VerificarDiaUtil(DateTime data)
         {
-            
-            if (quantidadeCaracteres != 10)
-            {
-                return false;
-            }
-            
-            if (!dia.All(char.IsDigit))
-            {
-                return false;
-            }
+            int dia = data.Day;
+            int mes = data.Month;
+            int ano = data.Year;
 
-            if (!mes.All(char.IsDigit))
-            {
-                return false;
-            }
-
-            if (!ano.All(char.IsDigit))
-            {
-                return false;
-            }
-
-            if (!primeiraBarra.Equals("/"))
-            {
-                return false;
-            }
-
-            if (!segundaBarra.Equals("/"))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private bool VerificarDataValida(int dia, int mes, int ano)
-        {
-            if ((dia <= 0 && dia > 31) || (mes <= 0 && mes > 12) || (ano <= 0))
-            {
-                return false;
-            }
-            else if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && !(dia >= 1 && dia <= 30))
-            {
-                return false;
-            }
-            else if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 
-                || mes == 12) && !(dia >= 1 && dia <= 31))
-            {
-                return false;
-            }
-            else if (mes == 2)
-            {
-                if (ano % 400 == 0)
-                {
-                    if (dia != 29)
-                    {
-                        return false;
-                    }
-                }
-                else if ((ano % 4 == 0) && (ano % 100 != 0))
-                {
-                    if (dia > 29)
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
-                    if (dia > 28)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        private DataResponse VerificarDiaUtil(int dia, int mes, int ano)
-        {
-            DateTime data = new DateTime(ano, mes, dia);
             DataCalendario feriadoFixo = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
             DataCalendario feriadoMovel = FeriadoMovel.ConsultarFeriadoMovel(dia, mes, ano);
             if (feriadoFixo != null)

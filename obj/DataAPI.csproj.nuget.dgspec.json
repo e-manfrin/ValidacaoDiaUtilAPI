@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj": {}
+    "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj": {}
   },
   "projects": {
-    "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj": {
+    "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
+        "projectUniqueName": "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
         "projectName": "DataAPI",
-        "projectPath": "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
+        "projectPath": "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\DataAPI.csproj",
         "packagesPath": "C:\\Users\\drman\\.nuget\\packages\\",
-        "outputPath": "C:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\obj\\",
+        "outputPath": "D:\\projetos\\API Rest .Net 5\\API\\DataAPI\\DataAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\drman\\AppData\\Roaming\\NuGet\\NuGet.Config",
