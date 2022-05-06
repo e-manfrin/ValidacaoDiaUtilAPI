@@ -20,7 +20,7 @@ namespace DataAPI.Services
                 return null;
             }          
         }
-        private DataResponse VerificarDiaUtil(DateTime data)
+        public DataResponse VerificarDiaUtil(DateTime data)
         {
             int dia = data.Day;
             int mes = data.Month;
@@ -52,7 +52,7 @@ namespace DataAPI.Services
                 return dataResponse;
             }
         }
-        private string ConversorDiasDaSemana(DateTime data)
+        public string ConversorDiasDaSemana(DateTime data)
         {
             int codigo = (int) data.DayOfWeek;
             if (codigo == 0)

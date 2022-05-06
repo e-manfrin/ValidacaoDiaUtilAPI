@@ -6,7 +6,7 @@
         public int Mes { get; set; }
         public int Ano { get; set; }
         public bool Feriado { get; set; }
-        public string? NomeFeriado { get; set; }
+        public string NomeFeriado { get; set; }
         public bool DiaUtil { get; set; }
 
         public DataCalendario(int dia, int mes, int ano, bool feriado, bool diaUtil, string nomeFeriado)
