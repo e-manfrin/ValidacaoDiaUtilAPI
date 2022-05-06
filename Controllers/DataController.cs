@@ -15,7 +15,8 @@ namespace DataAPI.Controllers
         [HttpGet]
         public IActionResult ValidacaoData([FromBody] DataRequest dataDto)
         {
-            DataResponse dataResponse = dataService.ValidarData(dataDto);   
+            var dataResponse = dataService.VerificarDiaUtil(dataDto.Data);   
+
             if(dataResponse == null)
             {
                 return NotFound();

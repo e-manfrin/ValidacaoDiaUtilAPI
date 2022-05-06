@@ -7,50 +7,41 @@ namespace DataAPI.Services
 {
     public class DataService
     {
-        public DataResponse ValidarData(DataRequest dataDto)
-        {
-            try
-            {
-                DateTime data = dataDto.Data;
-                DataResponse dataResponse = VerificarDiaUtil(data);
-                return dataResponse;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }          
-        }
         public DataResponse VerificarDiaUtil(DateTime data)
         {
             int dia = data.Day;
             int mes = data.Month;
             int ano = data.Year;
 
-            DataCalendario feriadoFixo = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
-            DataCalendario feriadoMovel = FeriadoMovel.ConsultarFeriadoMovel(dia, mes, ano);
+            DataResponse dataResponse;
+
+            var feriadoFixo = FeriadosFixo.ConsultarFeriadoFixo(dia, mes);
             if (feriadoFixo != null)
             {
-                DataResponse dataResponse = new DataResponse(data, feriadoFixo.NomeFeriado ,false, true);
-                return dataResponse;
-            }     
-            else if (feriadoMovel != null)
-            {
-                DataResponse dataResponse = new DataResponse(data, feriadoMovel.NomeFeriado ,false, true);
-                return dataResponse;
+                dataResponse = new DataResponse(data, feriadoFixo.NomeFeriado, false, true);
+
             }
-            else if (data.DayOfWeek == DayOfWeek.Saturday || data.DayOfWeek == DayOfWeek.Sunday)
-            {
-                string nomeDiaDaSemana = ConversorDiasDaSemana(data);
-                DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana ,false, false);
-                return dataResponse;
-            }            
-            else
-            {
-                string nomeDiaDaSemana = ConversorDiasDaSemana(data);
-                DataResponse dataResponse = new DataResponse(data,nomeDiaDaSemana,true, false);
-                
-                return dataResponse;
+            else {
+                var feriadoMovel = FeriadoMovel.ConsultarFeriadoMovel(dia, mes, ano);
+                if (feriadoMovel != null)
+                {
+                    dataResponse = new DataResponse(data, feriadoMovel.NomeFeriado, false, true);
+
+                }
+                else if (data.DayOfWeek == DayOfWeek.Saturday || data.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    var nomeDiaDaSemana = ConversorDiasDaSemana(data);
+                    dataResponse = new DataResponse(data, nomeDiaDaSemana, false, false);
+                    return dataResponse;
+                }
+                else
+                {
+                    var nomeDiaDaSemana = ConversorDiasDaSemana(data);
+                    dataResponse = new DataResponse(data, nomeDiaDaSemana, true, false);
+                }
             }
+            return dataResponse;
+            
         }
         public string ConversorDiasDaSemana(DateTime data)
         {
